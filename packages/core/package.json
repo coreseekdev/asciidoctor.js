@@ -32,6 +32,7 @@
     "README.md"
   ],
   "scripts": {
+    "postinstall": "patch-package",
     "test:graalvm": "node tasks/graalvm.cjs",
     "test:node": "mocha spec/*/*.spec.cjs && npm run test:node:esm",
     "test:node:esm": "mocha --experimental-json-modules spec/node/asciidoctor.spec.js",
@@ -112,6 +113,7 @@
     "module-alias": "2.2.3",
     "nunjucks": "3.2.4",
     "opal-compiler": "3.0.0",
+    "patch-package": "^8.0.1",
     "portfinder": "1.0.32",
     "pug": "3.0.2",
     "puppeteer": "24.8.2",

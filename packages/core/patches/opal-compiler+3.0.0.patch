@@ -1,0 +1,25 @@
+diff --git a/node_modules/opal-compiler/src/stdlib/logger.rb b/node_modules/opal-compiler/src/stdlib/logger.rb
+index 2e5131d..8c93029 100644
+--- a/node_modules/opal-compiler/src/stdlib/logger.rb
++++ b/node_modules/opal-compiler/src/stdlib/logger.rb
+@@ -35,10 +35,16 @@ class Logger
+   attr_accessor :progname
+   attr_accessor :formatter
+ 
+-  def initialize(pipe)
+-    @pipe = pipe
+-    @level = DEBUG
+-    @formatter = Formatter.new
++  def initialize(*args, **opts)
++    # Asciidoctor extension support
++    @progname = opts[:progname] if opts[:progname]
++    @formatter = opts[:formatter] if opts[:formatter]
++    @level = opts[:level] if opts[:level]
++
++    # Default initialization
++    @pipe = args.empty? ? $stderr : args[0]
++    @level ||= DEBUG
++    @formatter ||= Formatter.new
+   end
+ 
+   def level=(severity)
